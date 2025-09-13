@@ -1,0 +1,462 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+/* Header Styles */
+.header {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.stat-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffd700;
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Card Container */
+.card-container {
+    padding: 20px;
+    height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card {
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+    user-select: none;
+    transform-origin: center;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card.active {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.card.prev {
+    transform: translateX(-100%) scale(0.9);
+    opacity: 0.5;
+    z-index: 5;
+}
+
+.card.next {
+    transform: translateX(100%) scale(0.9);
+    opacity: 0.5;
+    z-index: 5;
+}
+
+.card.swiping-left {
+    transform: translateX(-50px) rotate(-5deg);
+    opacity: 0.7;
+}
+
+.card.swiping-right {
+    transform: translateX(50px) rotate(5deg);
+    opacity: 0.7;
+}
+
+/* Card Types */
+.card.list { border-top: 5px solid #ff6b6b; }
+.card.dict { border-top: 5px solid #4ecdc4; }
+.card.set { border-top: 5px solid #45b7d1; }
+.card.tuple { border-top: 5px solid #96ceb4; }
+.card.string { border-top: 5px solid #feca57; }
+.card.number { border-top: 5px solid #ff9ff3; }
+.card.operation { border-top: 5px solid #54a0ff; }
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-right: 15px;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+.card-content {
+    margin-bottom: 20px;
+}
+
+.syntax-example {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 4px solid #3498db;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.syntax-example .keyword {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.syntax-example .string {
+    color: #27ae60;
+}
+
+.syntax-example .number {
+    color: #f39c12;
+}
+
+.syntax-example .comment {
+    color: #95a5a6;
+    font-style: italic;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.features {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.features li {
+    padding: 8px 0;
+    color: #2c3e50;
+    position: relative;
+    padding-left: 25px;
+}
+
+.features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Controls */
+.controls {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.card-indicators {
+    display: flex;
+    gap: 8px;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #ffd700;
+    transform: scale(1.2);
+}
+
+/* Swipe Instructions */
+.swipe-instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.swipe-instructions.hidden {
+    display: none;
+}
+
+.instruction-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.swipe-icon {
+    font-size: 18px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.show .modal {
+    transform: scale(1);
+}
+
+.celebration {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: bounce 1s ease-in-out;
+}
+
+.modal h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.modal p {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.final-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.final-stat {
+    text-align: center;
+}
+
+.final-stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #3498db;
+}
+
+.final-stat-label {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.restart-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .app-container {
+        max-width: 100%;
+    }
+    
+    .card {
+        height: 450px;
+        padding: 25px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+    }
+    
+    .syntax-example {
+        font-size: 12px;
+        padding: 15px;
+    }
+    
+    .modal {
+        padding: 30px 20px;
+    }
+}
+
+/* Touch feedback */
+.card.touch-feedback {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
